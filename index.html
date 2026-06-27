@@ -1,658 +1,1564 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATB Visuals</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --void:#060606;--white:#F2F2F2;--charge:#E8FF00;--cut:#FF2D55;
-  --muted:#4A4A4A;--border:#1A1A1A;
-}
-html{scroll-behavior:smooth}
-body{background:var(--void);color:var(--white);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none}
-#cur{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--charge);
-  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:exclusion}
-#cur2{position:fixed;width:28px;height:28px;border-radius:50%;border:1px solid rgba(232,255,0,.25);
-  pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ateeb • Short Form Video Editor | Kashmir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* HERO */
-#hero{position:relative;height:100vh;overflow:hidden}
-#glc{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero-ui{position:absolute;inset:0;display:flex;flex-direction:column;
-  justify-content:flex-end;padding:52px 60px;pointer-events:none}
-.hero-title{font-size:clamp(72px,12vw,160px);font-weight:800;
-  line-height:.86;letter-spacing:-.035em}
-.hero-title em{color:var(--charge);font-style:normal}
-.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:24px}
-.hero-sub{font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:var(--muted);letter-spacing:.07em;line-height:1.8}
-.hero-btns{display:flex;gap:10px;pointer-events:all}
-.btn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.13em;
-  text-transform:uppercase;text-decoration:none;padding:13px 26px;cursor:none;transition:.2s}
-.btn-p{background:var(--charge);color:var(--void);font-weight:500}
-.btn-p:hover{background:#fff}
-.btn-g{border:1px solid #2a2a2a;color:var(--muted)}
-.btn-g:hover{border-color:#fff;color:#fff}
-.drag-tip{position:absolute;top:36px;right:56px;
-  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;
-  color:var(--muted);writing-mode:vertical-rl;opacity:0;animation:fi 1s .6s both}
-@keyframes fi{to{opacity:1}}
+    :root {
+      --bg: #060606;
+      --surface: #0e0e0e;
+      --surface2: #161616;
+      --border: #262626;
+      --border-light: #333333;
+      --text: #f0f0f0;
+      --text-muted: #999999;
+      --text-dim: #666666;
+      --cyan: #00e5ff;
+      --cyan-dark: #009faf;
+      --amber: #ff6b00;
+      --purple: #9b59b6;
+      --green: #00e676;
+      --red: #ff3d3d;
+    }
 
-/* SECTIONS */
-section{padding:120px 60px}
-.s-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;
-  text-transform:uppercase;color:var(--charge);margin-bottom:20px}
-.s-title{font-size:clamp(40px,6vw,80px);font-weight:800;letter-spacing:-.025em;line-height:.9}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* WORK */
-#work{padding-top:140px;max-width:1440px;margin:0 auto}
-.work-hdr{display:flex;align-items:baseline;justify-content:space-between;
-  border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:56px}
-.work-n{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px}
-.gc{position:relative;overflow:hidden;cursor:none;background:#111}
-.gc:nth-child(1){grid-column:span 8;aspect-ratio:16/8}
-.gc:nth-child(2){grid-column:span 4;aspect-ratio:7/8}
-.gc:nth-child(3){grid-column:span 4;aspect-ratio:7/8}
-.gc:nth-child(4){grid-column:span 5;aspect-ratio:16/9}
-.gc:nth-child(5){grid-column:span 3;aspect-ratio:7/8}
-.gc:nth-child(6){grid-column:span 4;aspect-ratio:16/9}
-.gc:nth-child(7){grid-column:span 8;aspect-ratio:16/7}
-.gc canvas{width:100%;height:100%;display:block}
-.gc-info{position:absolute;inset:0;padding:20px 22px;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  background:linear-gradient(to top,rgba(6,6,6,.95) 0%,transparent 50%);
-  opacity:0;transition:opacity .3s}
-.gc:hover .gc-info{opacity:1}
-.gc-type{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.2em;
-  text-transform:uppercase;margin-bottom:5px}
-.gc-name{font-size:17px;font-weight:700}
-.gc-tools{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-/* ABOUT */
-#about{border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-copy{font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.12;letter-spacing:-.02em}
-.about-copy em{color:var(--charge);font-style:normal}
-.stats{display:flex;flex-direction:column;gap:28px}
-.stat{border-left:2px solid var(--border);padding-left:22px}
-.stat-n{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1}
-.stat-n em{color:var(--charge);font-style:normal}
-.stat-l{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:3px}
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(6, 6, 6, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+    }
 
-/* CONTACT */
-#contact{border-top:1px solid var(--border);text-align:center}
-.ct-h{font-size:clamp(56px,11vw,144px);font-weight:800;line-height:.85;letter-spacing:-.04em;margin:24px 0 56px}
-.ct-h em{color:var(--charge);font-style:normal;display:block}
-.ct-email{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.08em;
-  color:var(--white);text-decoration:none;border-bottom:1px solid #2a2a2a;
-  padding-bottom:3px;cursor:none;transition:.2s}
-.ct-email:hover{color:var(--charge);border-color:var(--charge)}
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:24px 60px;
-  display:flex;align-items:center;justify-content:space-between}
-.f-logo{font-size:14px;font-weight:800;letter-spacing:.05em}
-.f-logo em{color:var(--charge);font-style:normal}
-.f-nav{display:flex;gap:24px}
-.f-nav a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:none;transition:.2s}
-.f-nav a:hover{color:#fff}
-.f-c{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
+    .nav-logo .dot {
+      color: var(--cyan);
+      font-size: 34px;
+      line-height: 1;
+    }
 
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s,transform .7s}
-.reveal.in{opacity:1;transform:none}
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      align-items: center;
+    }
 
-@media(max-width:768px){
-  .hero-title{font-size:56px}.hero-ui{padding:28px 24px}
-  .drag-tip{display:none}
-  section{padding:80px 24px}
-  #work{padding-top:80px;padding:80px 24px}
-  .grid{grid-template-columns:1fr 1fr}
-  .gc:nth-child(n){grid-column:span 1;aspect-ratio:9/7}
-  .gc:nth-child(1){grid-column:span 2;aspect-ratio:16/9}
-  #about{grid-template-columns:1fr;gap:40px}
-  footer{padding:20px 24px;flex-wrap:wrap;gap:12px}
-  #cur,#cur2{display:none}body{cursor:default}.btn{cursor:pointer}
-}
-</style>
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    .nav-cta:hover {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    /* ─── HERO SECTION ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    canvas#scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.85;
+      z-index: 0;
+    }
+
+    /* Much lighter overlay - lets the rotating film strip show through */
+    .hero-dim-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 6, 6, 0.25);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Additional vignette for depth without blocking the animation */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(6, 6, 6, 0.7) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 48px 40px;
+      max-width: 850px;
+      background: rgba(6, 6, 6, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      padding: 8px 20px;
+      border-radius: 30px;
+      margin-bottom: 28px;
+      background: rgba(0, 229, 255, 0.1);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(70px, 12vw, 150px);
+      line-height: 0.85;
+      letter-spacing: 0.03em;
+      color: #ffffff;
+      text-shadow: 0 0 80px rgba(0, 229, 255, 0.5), 0 4px 30px rgba(0, 0, 0, 0.9);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .hero-title .accent {
+      color: var(--cyan);
+      text-shadow: 0 0 100px rgba(0, 229, 255, 0.8), 0 0 60px rgba(0, 229, 255, 0.5);
+      animation: accentGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes accentGlow {
+      0% { text-shadow: 0 0 60px rgba(0, 229, 255, 0.5); }
+      100% { text-shadow: 0 0 100px rgba(0, 229, 255, 0.9), 0 0 140px rgba(0, 229, 255, 0.4); }
+    }
+
+    .hero-title:hover .accent {
+      animation: glitch 0.3s steps(2) 1;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 var(--amber), -2px 0 var(--cyan); }
+      25% { text-shadow: -2px 0 var(--amber), 2px 0 var(--cyan); clip-path: inset(10% 0 80% 0); }
+      50% { text-shadow: 2px 0 var(--cyan), -2px 0 var(--amber); }
+      75% { text-shadow: -2px 0 var(--cyan), 2px 0 var(--amber); clip-path: inset(60% 0 10% 0); }
+      100% { text-shadow: none; clip-path: none; }
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #dddddd;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      font-weight: 500;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-location {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: #bbbbbb;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-location::before {
+      content: '📍';
+      font-size: 14px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #000;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 45px rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-2px);
+      background: rgba(0, 229, 255, 0.1);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-indicator span {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--cyan), transparent);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      display: flex;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      position: relative;
+      z-index: 5;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 40px 32px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-item:hover {
+      background: var(--surface2);
+    }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-value .unit {
+      color: var(--cyan);
+      font-size: 36px;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .stat-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section {
+      padding: 100px 48px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .section-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      max-width: 300px;
+      line-height: 1.6;
+    }
+
+    /* ─── HORIZONTAL REEL ─── */
+    .reel-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .reel-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      padding-bottom: 10px;
+    }
+
+    .reel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .reel-track:active {
+      cursor: grabbing;
+    }
+
+    .reel-card {
+      flex: 0 0 300px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .reel-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+    }
+
+    .reel-video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 177.78%;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .reel-video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+
+    .reel-card:hover .reel-video-wrapper iframe {
+      pointer-events: auto;
+    }
+
+    .reel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(6, 6, 6, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .reel-card:hover .reel-overlay {
+      opacity: 1;
+    }
+
+    .reel-play-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 229, 255, 0.2);
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .reel-play-icon svg {
+      width: 16px;
+      height: 18px;
+      fill: var(--cyan);
+      margin-left: 3px;
+    }
+
+    .reel-info {
+      padding: 16px;
+      background: var(--surface);
+      position: relative;
+      z-index: 3;
+    }
+
+    .reel-type {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+
+    .reel-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 2px;
+      line-height: 1.1;
+    }
+
+    .reel-tools {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .reel-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .reel-link:hover {
+      border-color: var(--cyan);
+    }
+
+    .reel-scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .reel-scroll-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-light);
+      background: var(--surface);
+      color: var(--text-muted);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      font-size: 18px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .reel-scroll-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--surface2);
+    }
+
+    /* ─── ABOUT SECTION ─── */
+    #about {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .highlight-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .highlight-item:hover {
+      border-color: var(--cyan);
+    }
+
+    .highlight-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .highlight-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    .highlight-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+    }
+
+    /* ─── PROCESS SECTION ─── */
+    #process {
+      background: var(--bg);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .process-step {
+      background: var(--surface);
+      padding: 40px;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .process-step:hover {
+      background: var(--surface2);
+    }
+
+    .step-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      color: rgba(255, 255, 255, 0.03);
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .step-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── SOFTWARE SECTION ─── */
+    #software {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .software-grid {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .software-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 32px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      min-width: 140px;
+      transition: all 0.3s;
+    }
+
+    .software-item:hover {
+      border-color: var(--cyan);
+      transform: translateY(-4px);
+    }
+
+    .software-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .software-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+
+    /* ─── CONTACT SECTION ─── */
+    #contact {
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .contact-card {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .contact-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(50px, 8vw, 90px);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .contact-title .outline {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--border-light);
+    }
+
+    .contact-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg);
+      padding: 14px 20px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-row a {
+      color: var(--cyan);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-row a:hover {
+      color: #fff;
+    }
+
+    .contact-cta {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      background: var(--cyan);
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 4px;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+    }
+
+    .contact-cta:hover {
+      background: #fff;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+    }
+
+    .footer-brand span {
+      color: var(--cyan);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-socials a {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-socials a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-cta {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+      .hero-content {
+        margin: 0 16px;
+        padding: 30px 20px;
+      }
+      .hero-title {
+        font-size: 56px;
+      }
+      .stats-bar {
+        flex-wrap: wrap;
+      }
+      .stat-item {
+        flex: 0 0 50%;
+        border-bottom: 1px solid var(--border);
+      }
+      .section {
+        padding: 60px 20px;
+      }
+      .reel-card {
+        flex: 0 0 260px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .software-grid {
+        gap: 16px;
+      }
+      .software-item {
+        min-width: 120px;
+        padding: 20px 16px;
+      }
+      .contact-card {
+        padding: 40px 20px;
+      }
+      footer {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div id="cur"></div>
-<div id="cur2"></div>
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" class="nav-logo">ATEEB<span class="dot">.</span>VISUALS</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/918494043654" class="nav-cta" target="_blank">WhatsApp</a>
+  </nav>
 
-<!-- ════ HERO ════ -->
-<section id="hero">
-  <canvas id="glc"></canvas>
-  <div class="drag-tip">Drag · Explore</div>
-  <div class="hero-ui">
-    <h1 class="hero-title">ATB<br><em>VISUALS</em></h1>
-    <div class="hero-bottom">
-      <p class="hero-sub">Short-form video editor<br>Reels · Shorts · Motion</p>
-      <div class="hero-btns">
-        <a href="#work" class="btn btn-p">See Work</a>
-        <a href="#contact" class="btn btn-g">Contact</a>
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <canvas id="scene"></canvas>
+    <div class="hero-dim-overlay"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-content reveal">
+      <div class="hero-badge">• Video Editing •</div>
+      <h1 class="hero-title">ATEEB<br><span class="accent">VISUALS</span></h1>
+      <p class="hero-subtitle">Short Form Video Editor — Reels · Shorts · Motion</p>
+      <p class="hero-location">Based in Kashmir, India</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">View Portfolio</a>
+        <a href="https://wa.me/918494043654" class="btn btn-outline" target="_blank">WhatsApp: 8494043654</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ════ WORK ════ -->
-<section id="work">
-  <div class="work-hdr reveal">
-    <div>
-      <p class="s-label">Selected Work</p>
-      <h2 class="s-title">The Reel</h2>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
-    <span class="work-n">07 / 07</span>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item reveal">
+      <div class="stat-value">50<span class="unit">+</span></div>
+      <div class="stat-label">Edits Delivered</div>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.1s">
+      <div class="stat-value">36<span class="unit">K+</span></div>
+      <div class="stat-label">Views Generated</div>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.2s">
+      <div class="stat-value">24/48<span class="unit">h</span></div>
+      <div class="stat-label">Avg Turnaround</div>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.3s">
+      <div class="stat-value">2<span class="unit">+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
   </div>
-  <div class="grid" id="grid"></div>
+
+  <!-- WORK SECTION -->
+  <section id="work" class="section">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Portfolio</div>
+        <div class="section-title">The Reel</div>
+      </div>
+      <p class="section-hint">Drag to explore. Every clip engineered for retention.</p>
+    </div>
+    <div class="reel-container reveal">
+      <div class="reel-track" id="reelTrack"></div>
+      <div class="reel-scroll-hint">
+        <button class="reel-scroll-btn" id="scrollLeft" title="Scroll Left">←</button>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.15em;">DRAG OR CLICK ARROWS</span>
+        <button class="reel-scroll-btn" id="scrollRight" title="Scroll Right">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <h3>Editor from Kashmir</h3>
+        <p>I'm Ateeb, a short-form video editor specializing in high-retention content for YouTube Shorts, Instagram Reels, and TikTok. With over 3 years of experience, I craft every frame with precision — from pacing and captions to color grading and sound design.</p>
+        <p>Based in Kashmir, India, I work remotely with creators and brands worldwide. Fast turnaround, direct communication, no agencies.</p>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">⚡</div>
+            <div class="highlight-title">48h Delivery</div>
+            <div class="highlight-sub">Fast Turnaround</div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🎯</div>
+            <div class="highlight-title">Retention Focus</div>
+            <div class="highlight-sub">Every Second Counts</div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">💬</div>
+            <div class="highlight-title">Direct Chat</div>
+            <div class="highlight-sub">WhatsApp Communication</div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🌍</div>
+            <div class="highlight-title">Remote Ready</div>
+            <div class="highlight-sub">Worldwide Clients</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual reveal" style="transition-delay:0.2s">
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:40px; text-align:center;">
+          <div style="font-size:80px; margin-bottom:16px;">🎬</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.05em; color:var(--text);">Premiere Pro</div>
+          <div style="font-family:'Space Mono',monospace; font-size:11px; color:var(--cyan); margin-top:4px;">PRIMARY EDITOR</div>
+          <div style="margin-top:24px; font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:0.05em; color:var(--text);">After Effects</div>
+          <div style="font-family:'Space Mono',monospace; font-size:11px; color:var(--amber); margin-top:4px;">MOTION GRAPHICS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS SECTION -->
+  <section id="process" class="section">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">How I Work</div>
+        <div class="section-title">The Process</div>
+      </div>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="step-number">01</div>
+        <div class="step-icon">📥</div>
+        <div class="step-title">Raw Footage In</div>
+        <div class="step-desc">Send your clips via WhatsApp or cloud storage. I accept any format — no complicated briefs needed.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:0.1s">
+        <div class="step-number">02</div>
+        <div class="step-icon">✂️</div>
+        <div class="step-title">Cut for Retention</div>
+        <div class="step-desc">Paced cuts, dynamic captions, and smooth transitions. Every second is engineered to keep viewers watching.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:0.2s">
+        <div class="step-number">03</div>
+        <div class="step-icon">🎨</div>
+        <div class="step-title">Color & Sound</div>
+        <div class="step-desc">Cinematic color grading, sound design, and music sync. The polish that separates good from viral.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">04</div>
+        <div class="step-icon">📐</div>
+        <div class="step-title">Platform Ready</div>
+        <div class="step-desc">Exported at 9:16 or 16:9, optimized for YouTube, Instagram, and TikTok algorithms.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:0.15s">
+        <div class="step-number">05</div>
+        <div class="step-icon">🔁</div>
+        <div class="step-title">Revisions</div>
+        <div class="step-desc">Two rounds of revisions included. Then Paid Revisions. Direct WhatsApp communication — fast and clear.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:0.25s">
+        <div class="step-number">06</div>
+        <div class="step-icon">🚀</div>
+        <div class="step-title">Delivered</div>
+        <div class="step-desc">Final files in 24-48 hours. Ready to upload, ready to perform. Consistent quality guaranteed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE SECTION -->
+  <section id="software" class="section">
+    <div class="section-header reveal" style="text-align:center;">
+      <div>
+        <div class="section-label">Tools I Use</div>
+        <div class="section-title">Software Stack</div>
+      </div>
+    </div>
+    <div class="software-grid reveal" style="display: flex; gap: 20px; justify-content: center; padding: 20px;">
+      
+      <!-- Premiere Pro -->
+      <div class="software-item" style="display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: sans-serif;">
+        <div class="software-logo-container" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #00005c; box-shadow: 0 0 20px rgba(155,89,182,0.4);">
+          <img src="https://ik.imagekit.io/5xwchyocd7/Adobe-Premier-Pro.jpg" alt="Premiere Pro" style="width: 45px; height: 45px;" />
+        </div>
+        <div class="software-name" style="font-size: 14px; font-weight: 500;">Premiere Pro</div>
+      </div>
+
+      <!-- After Effects -->
+      <div class="software-item" style="display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: sans-serif;">
+        <div class="software-logo-container" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #00005c; box-shadow: 0 0 20px rgba(0,229,255,0.4);">
+          <img src="https://ik.imagekit.io/5xwchyocd7/iBJehkOi_400x400.png" alt="After Effects" style="width: 45px; height: 45px;" />
+        </div>
+        <div class="software-name" style="font-size: 14px; font-weight: 500;">After Effects</div>
+      </div>
+
+    </div>
 </section>
 
-<!-- ════ ABOUT ════ -->
-<section id="about">
-  <div class="reveal">
-    <p class="s-label">About</p>
-    <p class="about-copy">Editing that keeps<br>eyes locked and<br><em>thumbs frozen.</em></p>
-  </div>
-  <div class="stats">
-    <div class="stat reveal"><div class="stat-n">200<em>+</em></div><div class="stat-l">Edits delivered</div></div>
-    <div class="stat reveal" style="transition-delay:.08s"><div class="stat-n">50<em>M+</em></div><div class="stat-l">Views generated</div></div>
-    <div class="stat reveal" style="transition-delay:.16s"><div class="stat-n">48<em>h</em></div><div class="stat-l">Avg turnaround</div></div>
-  </div>
-</section>
 
-<!-- ════ CONTACT ════ -->
-<section id="contact">
-  <div class="reveal">
-    <p class="s-label">Open for projects</p>
-    <h2 class="ct-h">Let's<em>Create.</em></h2>
-    <a href="mailto:hello@atbvisuals.com" class="ct-email">hello@atbvisuals.com</a>
-  </div>
-</section>
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section">
+    <div class="contact-card reveal">
+      <div class="section-label">Get In Touch</div>
+      <div class="contact-title">LET'S<br><span class="outline">CREATE.</span></div>
+      <p class="contact-sub">Open for short-form projects, retainers, and creative collaborations.</p>
+      <div class="contact-info">
+        <div class="contact-row">
+          📞 <strong>8494043654</strong> <span style="color:var(--text-dim);">(WhatsApp Only)</span>
+        </div>
+        <div class="contact-row">
+          ✉️ <a href="mailto:edits.shredfx@gmail.com">edits.shredfx@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          📍 Kashmir, India
+        </div>
+      </div>
+      <a href="https://wa.me/918494043654" class="contact-cta" target="_blank">Start a Project →</a>
+    </div>
+  </section>
 
-<footer>
-  <div class="f-logo">ATB<em>.</em>VISUALS</div>
-  <div class="f-nav">
-    <a href="#">Instagram</a><a href="#">YouTube</a><a href="#">TikTok</a>
-  </div>
-  <div class="f-c">© 2026 ATB Visuals</div>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">ATEEB<span>.</span>VISUALS</div>
+    <div class="footer-socials">
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">TikTok</a>
+    </div>
+    <div class="footer-copy">© 2026 Ateeb • Kashmir, India</div>
+  </footer>
 
-<script>
-/* ══════════════════════════════════════
-   CURSOR
-══════════════════════════════════════ */
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
-let mx=0,my=0,tx=0,ty=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function aC(){
-  cur.style.cssText+=`left:${mx}px;top:${my}px;`;
-  tx+=(mx-tx)*.09;ty+=(my-ty)*.09;
-  cur2.style.cssText+=`left:${tx}px;top:${ty}px;`;
-  requestAnimationFrame(aC);
-})();
+  <script>
+    // ────────────────────────────────────────────
+    // 3D ROTATING FILM STRIP (MORE VISIBLE)
+    // ────────────────────────────────────────────
+    const canvas = document.getElementById('scene');
+    const ctx = canvas.getContext('2d');
+    let W, H;
 
-/* ══════════════════════════════════════
-   WORK GRID
-══════════════════════════════════════ */
-const PROJ=[
-  {name:'Cinematic Hook',  type:'YouTube Short',  tools:'Premiere · AE',     c:'#E8FF00'},
-  {name:'Brand Reveal',    type:'Instagram Reel', tools:'After Effects',     c:'#FF2D55'},
-  {name:'Travel Montage',  type:'Reel',           tools:'Premiere · Grade',  c:'#00C8FF'},
-  {name:'Talking Head',    type:'YouTube Short',  tools:'Premiere · Caps',   c:'#E8FF00'},
-  {name:'Product Launch',  type:'YouTube Short',  tools:'Blender · AE',      c:'#FF2D55'},
-  {name:'Event Recap',     type:'Instagram Reel', tools:'Premiere · DaVinci',c:'#A259FF'},
-  {name:'Tutorial Hook',   type:'YouTube Short',  tools:'AE · Typography',   c:'#00C8FF'},
-];
-const grid=document.getElementById('grid');
-PROJ.forEach((p,i)=>{
-  const d=document.createElement('div');
-  d.className='gc';
-  d.innerHTML=`<canvas id="wc${i}"></canvas>
-    <div class="gc-info">
-      <div class="gc-type" style="color:${p.c}">${p.type}</div>
-      <div class="gc-name">${p.name}</div>
-      <div class="gc-tools">${p.tools}</div>
-    </div>`;
-  grid.appendChild(d);
-  const cv=document.getElementById('wc'+i),cx=cv.getContext('2d');
-  let t=i*41;
-  function siz(){cv.width=d.offsetWidth;cv.height=d.offsetHeight;}
-  siz();window.addEventListener('resize',siz);
-  function draw(){
-    const W=cv.width,H=cv.height;
-    cx.fillStyle='#0a0a0a';cx.fillRect(0,0,W,H);
-    const g=cx.createRadialGradient(
-      W*.5+Math.sin(t*.007)*W*.35,H*.5+Math.cos(t*.005)*H*.3,0,W*.5,H*.5,W*.75);
-    g.addColorStop(0,p.c+'22');g.addColorStop(1,'transparent');
-    cx.fillStyle=g;cx.fillRect(0,0,W,H);
-    // waveform
-    cx.save();cx.globalAlpha=.4;cx.strokeStyle=p.c;cx.lineWidth=1.5;cx.beginPath();
-    for(let b=0;b<=80;b++){
-      const bx=b/80*W;
-      const by=H*.75+Math.sin(b*.3+t*.04+i)*H*.1+Math.sin(b*.8+t*.025)*H*.05;
-      b?cx.lineTo(bx,by):cx.moveTo(bx,by);
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
     }
-    cx.stroke();cx.restore();
-    // scanlines
-    cx.save();cx.globalAlpha=.045;cx.fillStyle='#000';
-    for(let s=0;s<H;s+=3)cx.fillRect(0,s,W,1.5);
-    cx.restore();
-    // accent dot
-    cx.fillStyle=p.c;cx.beginPath();cx.arc(W-14,14,3.5,0,Math.PI*2);cx.fill();
-    t++;requestAnimationFrame(draw);
-  }
-  draw();
-});
+    resize();
+    window.addEventListener('resize', resize);
 
-/* ══════════════════════════════════════
-   GENUINE WEBGL 3D HERO
-   — real perspective projection
-   — cards as actual quads with unique
-     positions, rotations, depth in world space
-   — per-vertex lighting from a moving light
-   — mouse drag rotates the entire scene
-   — inertia + auto-spin
-══════════════════════════════════════ */
-(function(){
-  const canvas=document.getElementById('glc');
-  const gl=canvas.getContext('webgl',{antialias:true,alpha:false});
-  if(!gl){console.warn('No WebGL');return;}
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
 
-  /* ─ shaders ─ */
-  const VS=`
-    precision highp float;
-    attribute vec3 aPos;
-    attribute vec2 aUV;
-    attribute vec3 aNorm;
-    attribute float aId;
-
-    uniform mat4 uProj;
-    uniform mat4 uView;
-    uniform mat4 uModel; /* per-card transform packed as uniform array */
-    uniform float uTime;
-    uniform float uCardTransforms[7*16]; /* 7 mat4s flattened */
-
-    varying vec2 vUV;
-    varying vec3 vNorm;
-    varying vec3 vWorldPos;
-    varying float vId;
-    varying float vDepth;
-
-    mat4 getM(int idx){
-      int base=idx*16;
-      return mat4(
-        uCardTransforms[base+0], uCardTransforms[base+1],
-        uCardTransforms[base+2], uCardTransforms[base+3],
-        uCardTransforms[base+4], uCardTransforms[base+5],
-        uCardTransforms[base+6], uCardTransforms[base+7],
-        uCardTransforms[base+8], uCardTransforms[base+9],
-        uCardTransforms[base+10],uCardTransforms[base+11],
-        uCardTransforms[base+12],uCardTransforms[base+13],
-        uCardTransforms[base+14],uCardTransforms[base+15]
-      );
+    function project(x, y, z, cx, cy, fov) {
+      const scale = fov / (fov + z);
+      return { x: cx + x * scale, y: cy + y * scale, scale };
     }
 
-    void main(){
-      int id=int(aId+0.5);
-      mat4 M = getM(id);
-
-      /* Gentle float bobbing per card */
-      float phase = aId * 1.618 + uTime * 0.45;
-      vec3 pos = aPos;
-      pos.y += sin(phase) * 0.065;
-      pos.x += cos(phase * 0.71) * 0.022;
-
-      vec4 worldPos = M * vec4(pos, 1.0);
-      vWorldPos = worldPos.xyz;
-      vNorm = normalize((M * vec4(aNorm, 0.0)).xyz);
-      vUV = aUV;
-      vId = aId;
-
-      vec4 vp = uView * worldPos;
-      vDepth = (-vp.z - 0.5) / 6.0; /* 0=near 1=far */
-      gl_Position = uProj * vp;
-    }
-  `;
-
-  const FS=`
-    precision mediump float;
-    varying vec2 vUV;
-    varying vec3 vNorm;
-    varying vec3 vWorldPos;
-    varying float vId;
-    varying float vDepth;
-    uniform float uTime;
-    uniform vec3 uLightPos;
-
-    float rnd(vec2 c){return fract(sin(dot(c,vec2(127.1,311.7)))*43758.5453);}
-
-    void main(){
-      int id = int(vId + 0.5);
-
-      /* per-card accent colours */
-      vec3 accents[7];
-      accents[0]=vec3(0.91,1.00,0.00);
-      accents[1]=vec3(1.00,0.18,0.33);
-      accents[2]=vec3(0.00,0.78,1.00);
-      accents[3]=vec3(0.91,1.00,0.00);
-      accents[4]=vec3(0.64,0.35,1.00);
-      accents[5]=vec3(1.00,0.18,0.33);
-      accents[6]=vec3(0.00,0.78,1.00);
-
-      vec3 ac = accents[id];
-      vec2 uv = vUV;
-
-      /* ── card base ── */
-      vec3 col = vec3(0.055 + float(id)*0.008);
-
-      /* gradient wash from centre */
-      float d = length(uv - vec2(0.5));
-      col += ac * 0.13 * smoothstep(0.7, 0.0, d);
-
-      /* ── moving scan band ── */
-      float scanV = fract(uTime * 0.09 + float(id) * 0.17);
-      float band = abs(uv.y - scanV);
-      col += ac * 0.25 * smoothstep(0.06, 0.0, band);
-
-      /* ── waveform line ── */
-      float wave = 0.72
-        + sin(uv.x * 22.0 + float(id)*2.3 + uTime*1.5) * 0.05
-        + sin(uv.x * 7.0  + uTime * 0.9)  * 0.025;
-      float wl = abs(uv.y - wave);
-      col += ac * smoothstep(0.014, 0.0, wl) * 0.9;
-
-      /* ── horizontal scanlines ── */
-      float sl = mod(uv.y * 160.0, 1.0);
-      col *= 0.88 + sl * 0.12;
-
-      /* ── border glow ── */
-      float bx = min(uv.x, 1.0-uv.x);
-      float by = min(uv.y, 1.0-uv.y);
-      float border = smoothstep(0.03, 0.0, min(bx, by));
-      col += ac * border * 0.6;
-
-      /* ── top label strip ── */
-      if(uv.y > 0.87){
-        col = mix(col, vec3(0.03) + ac*0.1, 0.75);
-        /* dot */
-        float dd = length(uv - vec2(0.91,0.935));
-        col += ac * smoothstep(0.035, 0.0, dd) * 1.0;
-      }
-
-      /* ── index label strip ── */
-      if(uv.y < 0.12 && uv.x < 0.28){
-        col = mix(col, vec3(0.02) + ac*0.08, 0.6);
-      }
-
-      /* ── diffuse lighting from moving point light ── */
-      vec3 toLight = normalize(uLightPos - vWorldPos);
-      float diff = max(dot(vNorm, toLight), 0.0) * 0.55;
-      col += diff * ac * 0.3;
-
-      /* ── specular ── */
-      vec3 camDir = normalize(vec3(0.0,0.0,3.0) - vWorldPos);
-      vec3 half2 = normalize(toLight + camDir);
-      float spec = pow(max(dot(vNorm, half2), 0.0), 28.0) * 0.5;
-      col += spec * ac * 0.4;
-
-      /* ── ambient occlusion at corners ── */
-      float ao = smoothstep(0.0, 0.18, min(bx*3.0, by*3.0));
-      col *= 0.7 + ao * 0.3;
-
-      /* ── depth fog into void ── */
-      col = mix(col, vec3(0.025), clamp(vDepth * 1.1, 0.0, 0.85));
-
-      /* ── film grain ── */
-      float grain = rnd(uv + vec2(uTime * 0.01)) * 0.06 - 0.03;
-      col += grain;
-
-      gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
-    }
-  `;
-
-  function mkShader(type,src){
-    const s=gl.createShader(type);
-    gl.shaderSource(s,src);gl.compileShader(s);
-    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))
-      console.error(gl.getShaderInfoLog(s));
-    return s;
-  }
-  const prog=gl.createProgram();
-  gl.attachShader(prog,mkShader(gl.VERTEX_SHADER,VS));
-  gl.attachShader(prog,mkShader(gl.FRAGMENT_SHADER,FS));
-  gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))
-    console.error(gl.getProgramInfoLog(prog));
-  gl.useProgram(prog);
-
-  /* ─ mat4 helpers ─ */
-  const m4={
-    id:()=>new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]),
-    mul(a,b){
-      const o=new Float32Array(16);
-      for(let r=0;r<4;r++)for(let c=0;c<4;c++){
-        let s=0;for(let k=0;k<4;k++)s+=a[r+k*4]*b[k+c*4];
-        o[r+c*4]=s;
-      }
-      return o;
-    },
-    persp(fov,asp,n,f){
-      const t2=Math.tan(fov/2),m=new Float32Array(16);
-      m[0]=1/(asp*t2);m[5]=1/t2;
-      m[10]=(f+n)/(n-f);m[11]=-1;
-      m[14]=2*f*n/(n-f);
-      return m;
-    },
-    lookAt(eye,cen,up){
-      const ez=[eye[0]-cen[0],eye[1]-cen[1],eye[2]-cen[2]];
-      const el=Math.hypot(...ez);
-      const e=[ez[0]/el,ez[1]/el,ez[2]/el];
-      const rx=[up[1]*e[2]-up[2]*e[1],up[2]*e[0]-up[0]*e[2],up[0]*e[1]-up[1]*e[0]];
-      const rl=Math.hypot(...rx);const r=[rx[0]/rl,rx[1]/rl,rx[2]/rl];
-      const u=[e[1]*r[2]-e[2]*r[1],e[2]*r[0]-e[0]*r[2],e[0]*r[1]-e[1]*r[0]];
-      const m=new Float32Array(16);
-      m[0]=r[0];m[4]=r[1];m[8]=r[2];
-      m[1]=u[0];m[5]=u[1];m[9]=u[2];
-      m[2]=e[0];m[6]=e[1];m[10]=e[2];
-      m[12]=-(r[0]*eye[0]+r[1]*eye[1]+r[2]*eye[2]);
-      m[13]=-(u[0]*eye[0]+u[1]*eye[1]+u[2]*eye[2]);
-      m[14]=-(e[0]*eye[0]+e[1]*eye[1]+e[2]*eye[2]);
-      m[15]=1;
-      return m;
-    },
-    rotX(a){const c=Math.cos(a),s=Math.sin(a),m=m4.id();
-      m[5]=c;m[6]=s;m[9]=-s;m[10]=c;return m;},
-    rotY(a){const c=Math.cos(a),s=Math.sin(a),m=m4.id();
-      m[0]=c;m[2]=-s;m[8]=s;m[10]=c;return m;},
-    rotZ(a){const c=Math.cos(a),s=Math.sin(a),m=m4.id();
-      m[0]=c;m[1]=s;m[4]=-s;m[5]=c;return m;},
-    trans(x,y,z){const m=m4.id();m[12]=x;m[13]=y;m[14]=z;return m;},
-    scale(x,y,z){const m=m4.id();m[0]=x;m[5]=y;m[10]=z;return m;},
-  };
-
-  /* ─ card definitions ─
-     Each card: world position + initial rotation
-     Spread across different depths, heights, angles
-  ─ */
-  const CARDS=[
-    {pos:[-1.4,  0.5, -0.8], rx: 0.18, ry:-0.55, rz: 0.06, sx:1.0,sy:0.62},
-    {pos:[ 0.1,  0.9, -2.0], rx:-0.10, ry: 0.20, rz:-0.08, sx:1.1,sy:0.68},
-    {pos:[ 1.5,  0.3, -1.0], rx: 0.08, ry: 0.60, rz: 0.12, sx:0.95,sy:0.59},
-    {pos:[-0.6, -0.7, -1.5], rx:-0.22, ry:-0.30, rz: 0.05, sx:1.05,sy:0.65},
-    {pos:[ 0.9, -0.5, -0.5], rx: 0.14, ry: 0.45, rz:-0.10, sx:0.9,sy:0.56},
-    {pos:[-1.7, -0.3, -2.5], rx:-0.06, ry:-0.65, rz: 0.18, sx:1.15,sy:0.72},
-    {pos:[ 1.9,  0.7, -2.2], rx: 0.20, ry: 0.35, rz: 0.04, sx:1.0,sy:0.62},
-  ];
-  const N=CARDS.length;
-
-  /* ─ build quad geometry for one card (unit [-0.5,0.5] × [-0.5,0.5]) ─ */
-  /* Each card shares the same local-space mesh; world transform is in uniform */
-  const localPos=[],localUV=[],localNorm=[],localId=[],localIdx=[];
-  let base=0;
-  CARDS.forEach((c,i)=>{
-    // 4 corners of card in local space
-    const hw=0.5,hh=0.5;
-    const corners=[
-      [-hw,-hh,0],[hw,-hh,0],[hw,hh,0],[-hw,hh,0]
+    const NUM_FRAMES = 16;
+    const FRAME_W = 90, FRAME_H = 60;
+    const STRIP_RADIUS = 200;
+    const frameColors = [
+      ['#1a0a2e', '#7b2fff'],
+      ['#0a1a2e', '#00e5ff'],
+      ['#2e0a0a', '#ff6b00'],
+      ['#0a2e1a', '#00ff87'],
+      ['#2e2a0a', '#ffd700'],
+      ['#1a2e0a', '#b2ff59'],
+      ['#2e0a1a', '#ff4081'],
+      ['#0a0a2e', '#536dfe'],
     ];
-    const uvs=[[0,0],[1,0],[1,1],[0,1]];
-    corners.forEach((p,ci)=>{
-      localPos.push(...p);
-      localUV.push(...uvs[ci]);
-      localNorm.push(0,0,1); // face normal in local space
-      localId.push(i);
-    });
-    localIdx.push(base,base+1,base+2, base,base+2,base+3);
-    base+=4;
-  });
 
-  function mkBuf(data,target=gl.ARRAY_BUFFER){
-    const b=gl.createBuffer();
-    gl.bindBuffer(target,b);
-    gl.bufferData(target,
-      target===gl.ELEMENT_ARRAY_BUFFER?new Uint16Array(data):new Float32Array(data),
-      gl.STATIC_DRAW);
-    return b;
-  }
+    const labels = ['REELS', 'SHORTS', 'MOTION', 'GRADES', 'CUTS', 'VFX', 'CAPS', 'SYNC',
+      'HOOKS', 'B-ROLL', 'COLOR', 'PACING', 'STORY', 'SOUND', 'EXPORT', 'VIRAL'
+    ];
 
-  const posBuf =mkBuf(localPos);
-  const uvBuf  =mkBuf(localUV);
-  const nrmBuf =mkBuf(localNorm);
-  const idBuf  =mkBuf(localId);
-  const idxBuf =mkBuf(localIdx,gl.ELEMENT_ARRAY_BUFFER);
+    let t = 0;
+    let rotX = 0, rotY = 0, tRotX = 0, tRotY = 0;
 
-  const aPos   =gl.getAttribLocation(prog,'aPos');
-  const aUV    =gl.getAttribLocation(prog,'aUV');
-  const aNorm  =gl.getAttribLocation(prog,'aNorm');
-  const aId    =gl.getAttribLocation(prog,'aId');
-  const uProj  =gl.getUniformLocation(prog,'uProj');
-  const uView  =gl.getUniformLocation(prog,'uView');
-  const uTime  =gl.getUniformLocation(prog,'uTime');
-  const uLight =gl.getUniformLocation(prog,'uLightPos');
-  const uCT    =gl.getUniformLocation(prog,'uCardTransforms');
+    function drawScene() {
+      ctx.clearRect(0, 0, W, H);
 
-  /* ─ bind attribs (static) ─ */
-  function bindA(buf,loc,sz){
-    gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc,sz,gl.FLOAT,false,0,0);
-  }
-  bindA(posBuf,aPos,3);
-  bindA(uvBuf, aUV, 2);
-  bindA(nrmBuf,aNorm,3);
-  bindA(idBuf, aId, 1);
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,idxBuf);
+      // Subtle grid
+      ctx.save();
+      ctx.strokeStyle = 'rgba(0,229,255,0.025)';
+      ctx.lineWidth = 0.5;
+      const GRID = 60;
+      for (let gx = 0; gx < W; gx += GRID) {
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, H);
+        ctx.stroke();
+      }
+      for (let gy = 0; gy < H; gy += GRID) {
+        ctx.beginPath();
+        ctx.moveTo(0, gy);
+        ctx.lineTo(W, gy);
+        ctx.stroke();
+      }
+      ctx.restore();
 
-  /* ─ mouse drag ─ */
-  let yaw=0,pitch=0,vy=0.004,vp=0,dragging=false,lx=0,ly=0;
-  canvas.addEventListener('mousedown',e=>{dragging=true;lx=e.clientX;ly=e.clientY;vy=vp=0;});
-  window.addEventListener('mouseup',()=>dragging=false);
-  window.addEventListener('mousemove',e=>{
-    if(!dragging)return;
-    const dx=e.clientX-lx,dy=e.clientY-ly;
-    vy=dx*0.006;vp=dy*0.004;
-    yaw+=vy;pitch+=vp;lx=e.clientX;ly=e.clientY;
-  });
-  // touch
-  let lastTouch=null;
-  canvas.addEventListener('touchstart',e=>{lastTouch=e.touches[0];vy=vp=0;});
-  canvas.addEventListener('touchmove',e=>{
-    if(!lastTouch)return;
-    const t=e.touches[0];
-    vy=(t.clientX-lastTouch.clientX)*0.006;
-    vp=(t.clientY-lastTouch.clientY)*0.004;
-    yaw+=vy;pitch+=vp;lastTouch=t;e.preventDefault();
-  },{passive:false});
+      tRotX = mouseY * 0.3;
+      tRotY = mouseX * 0.5;
+      rotX += (tRotX - rotX) * 0.04;
+      rotY += (tRotY - rotY) * 0.04;
 
-  /* ─ resize ─ */
-  function resize(){
-    canvas.width=canvas.offsetWidth;
-    canvas.height=canvas.offsetHeight;
-    gl.viewport(0,0,canvas.width,canvas.height);
-  }
-  resize();window.addEventListener('resize',resize);
+      const cx = W / 2, cy = H / 2;
+      const fov = 500;
 
-  /* ─ compute per-card world matrices ─ */
-  function buildCardMatrices(t){
-    const all=new Float32Array(N*16);
-    CARDS.forEach((c,i)=>{
-      // local rotation (baked)
-      let M=m4.id();
-      M=m4.mul(m4.rotX(c.rx),M);
-      M=m4.mul(m4.rotY(c.ry),M);
-      M=m4.mul(m4.rotZ(c.rz),M);
-      // scale to card aspect
-      M=m4.mul(M,m4.scale(c.sx,c.sy,1));
-      // gentle individual drift in Y/X over time
-      const dx=Math.cos(t*0.3+i*1.4)*0.04;
-      const dy=Math.sin(t*0.4+i*1.1)*0.055;
-      // translate to world position
-      const T=m4.trans(c.pos[0]+dx,c.pos[1]+dy,c.pos[2]);
-      M=m4.mul(T,M);
-      all.set(M,i*16);
-    });
-    return all;
-  }
+      const frames = [];
+      for (let i = 0; i < NUM_FRAMES; i++) {
+        const angle = (i / NUM_FRAMES) * Math.PI * 2 + t * 0.003;
+        const r = STRIP_RADIUS;
+        let x3 = Math.cos(angle) * r;
+        let z3 = Math.sin(angle) * r;
+        let y3 = (i % 2 === 0) ? -70 : 70;
 
-  /* ─ render loop ─ */
-  let t=0;
-  function frame(){
-    t+=0.016;
+        const x3r = x3 * Math.cos(rotY) - z3 * Math.sin(rotY);
+        const z3r = x3 * Math.sin(rotY) + z3 * Math.cos(rotY);
+        const y3r = y3 * Math.cos(rotX) - z3r * Math.sin(rotX);
+        const z3f = y3 * Math.sin(rotX) + z3r * Math.cos(rotX);
 
-    if(!dragging){
-      yaw+=vy; pitch+=vp;
-      vy*=0.95; vp*=0.95;
-      // gentle auto-rotation
-      vy+=0.0025;
+        const p = project(x3r, y3r, z3f + 250, cx, cy, fov);
+        frames.push({ i, p, z: z3f });
+      }
+
+      frames.sort((a, b) => b.z - a.z);
+
+      for (const f of frames) {
+        const { p, i } = f;
+        const sc = p.scale;
+        const fw = FRAME_W * sc, fh = FRAME_H * sc;
+        const fx = p.x - fw / 2, fy = p.y - fh / 2;
+        const col = frameColors[i % frameColors.length];
+
+        ctx.save();
+        ctx.shadowColor = col[1];
+        ctx.shadowBlur = 12 * sc;
+        ctx.globalAlpha = 0.7;
+
+        const grad = ctx.createLinearGradient(fx, fy, fx + fw, fy + fh);
+        grad.addColorStop(0, col[0]);
+        grad.addColorStop(1, '#0a0a0a');
+        ctx.fillStyle = grad;
+        ctx.fillRect(fx, fy, fw, fh);
+
+        ctx.strokeStyle = col[1];
+        ctx.lineWidth = 1.5 * sc;
+        ctx.globalAlpha = 0.55;
+        ctx.strokeRect(fx, fy, fw, fh);
+
+        ctx.fillStyle = 'rgba(0,0,0,.5)';
+        const holes = 4;
+        for (let h = 0; h < holes; h++) {
+          const hx = fx + (h + 0.5) * (fw / holes) - 4 * sc;
+          ctx.fillRect(hx, fy + 2 * sc, 8 * sc, 5 * sc);
+          ctx.fillRect(hx, fy + fh - 7 * sc, 8 * sc, 5 * sc);
+        }
+
+        ctx.fillStyle = col[1];
+        ctx.globalAlpha = 0.12;
+        for (let sl = 0; sl < fh; sl += 4 * sc) {
+          ctx.fillRect(fx, fy + sl, fw, 1 * sc);
+        }
+
+        ctx.globalAlpha = 0.6;
+        ctx.fillStyle = col[1];
+        ctx.font = `bold ${10 * sc}px "Space Mono", monospace`;
+        ctx.textAlign = 'center';
+        ctx.fillText(labels[i], fx + fw / 2, fy + fh / 2 + 4 * sc);
+        ctx.restore();
+      }
+
+      // Subtle center glow
+      const gr = ctx.createRadialGradient(cx, cy, 0, cx, cy, 260);
+      gr.addColorStop(0, 'rgba(0,229,255,0.03)');
+      gr.addColorStop(0.5, 'rgba(0,229,255,0.01)');
+      gr.addColorStop(1, 'transparent');
+      ctx.fillStyle = gr;
+      ctx.fillRect(0, 0, W, H);
+
+      t++;
+      requestAnimationFrame(drawScene);
     }
-    pitch=Math.max(-0.55,Math.min(0.55,pitch));
+    drawScene();
 
-    gl.clearColor(0.024,0.024,0.024,1);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
-    gl.enable(gl.DEPTH_TEST);
-    gl.depthFunc(gl.LEQUAL);
+    // ────────────────────────────────────────────
+    // HORIZONTAL REEL WITH YOUR YOUTUBE SHORTS
+    // ────────────────────────────────────────────
+    const projects = [
+      {
+        type: 'Podcast Reel',
+        title: 'Conversation Flow Edit',
+        tools: 'Premiere Pro · Captions · Pacing',
+        videoId: '6_9JpPM18Sc',
+        link: 'https://youtube.com/shorts/6_9JpPM18Sc'
+      },
+      {
+        type: 'Motion Graphics',
+        title: 'Visual Storytelling',
+        tools: 'After Effects · Motion Design',
+        videoId: 'oAytYld2V8A',
+        link: 'https://youtube.com/shorts/oAytYld2V8A'
+      },
+      {
+        type: 'Gym Reel',
+        title: 'Fitness Motivation Cut',
+        tools: 'Premiere Pro · Color Grade · Beat Sync',
+        videoId: '-QdJbB6eTaI',
+        link: 'https://www.youtube.com/embed/-QdJbB6eTaI?rel=0'
+      },
+      {
+        type: 'Business Ad',
+        title: 'Brand Commercial Edit',
+        tools: 'Premiere Pro · Typography · SFX',
+        videoId: 'GXPDDCnIx1M',
+        link: 'https://youtube.com/shorts/GXPDDCnIx1M'
+      },
+      {
+        type: 'Facts Short',
+        title: 'Did You Know? Series',
+        tools: 'After Effects · Motion Graphics',
+        videoId: 'UJL89ZG16Ew',
+        link: 'https://youtube.com/shorts/UJL89ZG16Ew'
+      },
+      {
+        type: 'Informative Short',
+        title: 'Knowledge Breakdown',
+        tools: 'Premiere Pro · Captions · Graphics',
+        videoId: 'zqdxZBeQ0d8',
+        link: 'https://youtube.com/shorts/zqdxZBeQ0d8'
+      },
+      {
+        type: 'Motivational Reel',
+        title: 'Rise & Grind Edit',
+        tools: 'After Effects · Color Grade · Music',
+        videoId: 'Z7MqRjbHxog',
+        link: 'https://youtube.com/shorts/Z7MqRjbHxog'
+      },
+      {
+        type: 'Product Review',
+        title: 'Tech Unbox & Review',
+        tools: 'Premiere Pro · Voiceover · B-Roll',
+        videoId: 'FTk-ZzCrPKc',
+        link: 'https://youtube.com/shorts/FTk-ZzCrPKc'
+      }
+    ];
 
-    const asp=canvas.width/canvas.height;
-    const proj=m4.persp(1.05,asp,0.1,20);
+    const reelTrack = document.getElementById('reelTrack');
 
-    // camera orbits with drag
-    const camDist=3.6;
-    const camX=Math.sin(yaw)*Math.cos(pitch)*camDist;
-    const camY=Math.sin(pitch)*camDist;
-    const camZ=Math.cos(yaw)*Math.cos(pitch)*camDist;
-    const view=m4.lookAt([camX,camY,camZ],[0,0,-1],[0,1,0]);
+    projects.forEach((p) => {
+      const card = document.createElement('div');
+      card.className = 'reel-card';
 
-    // moving light
-    const lx2=Math.sin(t*0.4)*3.5;
-    const ly2=Math.cos(t*0.3)*2.5+1.0;
-    const lz2=Math.cos(t*0.25)*2.0+2.0;
+      card.innerHTML = `
+        <div class="reel-video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/${p.videoId}?autoplay=0&mute=1&controls=1&loop=1&playlist=${p.videoId}&modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3" 
+            title="${p.title}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+          <div class="reel-overlay">
+            <div class="reel-play-icon">
+              <svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="reel-info">
+          <div class="reel-type">${p.type}</div>
+          <div class="reel-title">${p.title}</div>
+          <div class="reel-tools">${p.tools}</div>
+          <a href="${p.link}" target="_blank" class="reel-link">Watch on YouTube ↗</a>
+        </div>
+      `;
 
-    gl.uniformMatrix4fv(uProj,false,proj);
-    gl.uniformMatrix4fv(uView,false,view);
-    gl.uniform1f(uTime,t);
-    gl.uniform3f(uLight,lx2,ly2,lz2);
+      reelTrack.appendChild(card);
+    });
 
-    const cardMats=buildCardMatrices(t);
-    gl.uniform1fv(uCT,cardMats);
+    // ────────────────────────────────────────────
+    // DRAG TO SCROLL
+    // ────────────────────────────────────────────
+    let isDown = false, startX, scrollLeftPos;
 
-    gl.drawElements(gl.TRIANGLES,N*6,gl.UNSIGNED_SHORT,0);
-    requestAnimationFrame(frame);
-  }
-  frame();
-})();
+    reelTrack.addEventListener('mousedown', (e) => {
+      isDown = true;
+      reelTrack.classList.add('active');
+      startX = e.pageX - reelTrack.offsetLeft;
+      scrollLeftPos = reelTrack.scrollLeft;
+    });
 
-/* ══════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════ */
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
+    reelTrack.addEventListener('mouseleave', () => {
+      isDown = false;
+      reelTrack.classList.remove('active');
+    });
+
+    reelTrack.addEventListener('mouseup', () => {
+      isDown = false;
+      reelTrack.classList.remove('active');
+    });
+
+    reelTrack.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - reelTrack.offsetLeft;
+      const walk = (x - startX) * 2;
+      reelTrack.scrollLeft = scrollLeftPos - walk;
+    });
+
+    // Touch events for mobile
+    reelTrack.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - reelTrack.offsetLeft;
+      scrollLeftPos = reelTrack.scrollLeft;
+    });
+
+    reelTrack.addEventListener('touchend', () => {
+      isDown = false;
+    });
+
+    reelTrack.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - reelTrack.offsetLeft;
+      const walk = (x - startX) * 2;
+      reelTrack.scrollLeft = scrollLeftPos - walk;
+    });
+
+    // ────────────────────────────────────────────
+    // ARROW BUTTONS
+    // ────────────────────────────────────────────
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+
+    scrollLeftBtn.addEventListener('click', () => {
+      reelTrack.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      reelTrack.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+
+    // ────────────────────────────────────────────
+    // SCROLL REVEAL OBSERVER
+    // ────────────────────────────────────────────
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Trigger hero content visible immediately
+    document.querySelector('.hero-content.reveal')?.classList.add('visible');
+  </script>
 </body>
 </html>
