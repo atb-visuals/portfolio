@@ -214,6 +214,9 @@
       #contact{padding:80px 22px}
       footer{padding:18px 22px;flex-wrap:wrap;gap:10px}
       #cur,#cur2{display:none}body{cursor:default}.btn,.contact-email,.contact-phone{cursor:pointer}
+      
+      /* MOBILE OVERRIDE FOR HOVER EFFECTS */
+      .v-info{opacity:1 !important}
     }
   </style>
 </head>
@@ -367,7 +370,7 @@
         const off = document.createElement('canvas');
         off.width = W; off.height = H;
         const ox = off.getContext('2d');
-        const fs = Math.min(W * 0.15, H * 0.22, 180);
+        const fs = Math.min(W * 0.18, 180);
         ox.fillStyle = '#fff';
         ox.font = `700 ${fs}px 'Bebas Neue', sans-serif`;
         ox.textAlign = 'center';
